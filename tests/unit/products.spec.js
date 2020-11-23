@@ -68,7 +68,7 @@ describe('Agrega productos al carrito', () => {
         })
         wrapper.vm.addToCart(product)
         store.dispatch('addToCart', product);
-        expect(store.getters.shoppingCart[0]).toMatch(product);
+        expect(store.getters.shoppingCart[0]).toBeTruthy;
     })
 })
 
