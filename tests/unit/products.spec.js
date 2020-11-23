@@ -72,10 +72,24 @@ describe('Agrega productos al carrito', () => {
 
 // Verificar que sea posible eliminar productos del carrito
 
-// describe('Elimina productos del carrito', () => {
-//     it('Elimina productos', () => {
-//         const
-//     })
+describe('Elimina productos del carrito', () => {
+    it('Elimina productos', () => {
+        const product = {
+            name: 'Casa',
+            id: 0,
+            price: 100.0,
+        }
+        const wrapper= shallowMount(Products, {
+            localVue,
+            Vuex,
+            store,
+        })
+        wrapper.setMethods({
+
+        })
+        // expect(wrapper.vm.$store.commit.product[0]).toContainEqual(product);
+    })
+})
 
 
     // describe('Agrega productos al carrito', () => {
@@ -92,6 +106,4 @@ describe('Agrega productos al carrito', () => {
     //         })
     //         expect(wrapper.text()).toContain(propsData);
     //     })
-
-
 
