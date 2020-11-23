@@ -55,7 +55,6 @@ describe('Buscar productos por nombre', () => {
 
 describe('Agrega productos al carrito', () => {
     it('Agregando al carrito', () => {
-
         const product = {
             name: 'Casa',
             id: 0,
@@ -67,10 +66,17 @@ describe('Agrega productos al carrito', () => {
             store,
         })
         wrapper.vm.addToCart(product)
-        store.dispatch('addToCart', product);
-        expect(store.getters.shoppingCart[0]).toBeTruthy;
+        expect(wrapper.vm.$store.getters.shoppingCart.list[0]).toEqual(product);
     })
 })
+
+// Verificar que sea posible eliminar productos del carrito
+
+// describe('Elimina productos del carrito', () => {
+//     it('Elimina productos', () => {
+//         const
+//     })
+
 
     // describe('Agrega productos al carrito', () => {
     //     it('Agregando al carro', () => {
@@ -88,4 +94,4 @@ describe('Agrega productos al carrito', () => {
     //     })
 
 
-// Verificar que sea posible eliminar productos del carrito
+
