@@ -10,15 +10,38 @@ describe('Pruebas con el store', () => {
     beforeAll(() => {
         Vue.use(Vuex);
         store = new Vuex.Store(store)
-        router = new VueRouter(myRoutes)
+
     });
 });
 
 const localVue = createLocalVue();
+const router = new VueRouter(myRoutes)
 
-
-// Verificar la funcionalidad de "Iniciar sesión con mail y contraseña" (Debe comprobar que la sesión del usuario está activa) (3 puntos)
+// Verificar la funcionalidad de iniciar sesión con mail
 
 describe('Funcionalidad iniciar sesión', () => {
-    it('')
+    it('Comprueba que no ha iniciado sesión', () => {
+        store.dispatch('updateUser', undefined)
+        const wrapper = shallowMount(Navbar, {
+            propsData: {
+                title: 'Mi Tienda'
+            },
+            localVue,
+            store,
+            router,
+        })
+        expect(wrapper.text()).toContain('Login')
+    }),
+    it('Comprueba que está logueado', () => {
+        store.dispatch('updateUser', {email: 'user@mystore.com'})
+        const wrapper = shallowMount(Navbar, {
+        propsData: {
+            title: "Mi Tienda"
+        },
+        localVue,
+        store,
+        router,
+        })
+        expect(wrapper.text()).toContain('Usuario')
+    })
 })

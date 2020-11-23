@@ -11,9 +11,10 @@ describe('Pruebas con el store', () => {
     });
 });
 
-// const localVue = createLocalVue()
+const localVue = createLocalVue()
 
-// Verifique la funcionalidad "Buscar productos por nombre" (2 puntos)
+// Verifique la funcionalidad de buscar productos por nombre
+
 describe('Buscar productos por nombre', () => {
     it('Buscar nombre', () => {
       const wrapper = shallowMount(Products)
@@ -50,17 +51,41 @@ describe('Buscar productos por nombre', () => {
     });
   });
 
-// Verificar que sea posible "Añadir productos a un carrito de compra y ver el carrito" (3 puntos)
-    it('Agregando al carrito', () => {
-        const wrapper= shallowMount(Products)
-        const product = [{
-            name: 'Bote',
-            qty: 1,
-            price: 100,
-        }]
-        wrapper.vm.addToCart(product)
-        store.dispatch('addToCart', 'Agregando bote');
-        expect(store.getters.shoppingCart[0]).toBe(product);
-    });
+// Verificar que sea posible añadir productos a un carrito de compra y ver el carrito
 
-// Verificar que sea posible "Eliminar productos del carrito" (2 puntos)
+describe('Agrega productos al carrito', () => {
+    it('Agregando al carrito', () => {
+
+        const product = {
+            name: 'Casa',
+            id: 0,
+            price: 100.0,
+        }
+        const wrapper= shallowMount(Products, {
+            localVue,
+            Vuex,
+            store,
+        })
+        wrapper.vm.addToCart(product)
+        store.dispatch('addToCart', product);
+        expect(store.getters.shoppingCart[0]).toMatch(product);
+    })
+})
+
+    // describe('Agrega productos al carrito', () => {
+    //     it('Agregando al carro', () => {
+    //         store.dispatch('addToCart', undefined)
+    //         const wrapper = shallowMount(Products, {
+    //             propsData: {
+    //                 name: 'Bote',
+    //                 qty: 1,
+    //                 price: 100,
+    //             },
+    //             localVue,
+    //             store,
+    //         })
+    //         expect(wrapper.text()).toContain(propsData);
+    //     })
+
+
+// Verificar que sea posible eliminar productos del carrito
